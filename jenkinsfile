@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+tools {
+maven "Maven"
+}
+    stages {
+        stage('gitcheckout') {
+            steps {
+                 
+                    git 'https://github.com/ALISAYYAD09/maven-web-application.git'
+
+      }
+        }
+      stage('junit test') {
+            steps {
+                script{
+                      sh 'mvn test'
+                   }
+            }
+        }
+       stage('integration test') {
+            steps {
+                script{
+                      sh 'mvn verify -DskipUnitTests'
+                   }
+            }
+        }
+        stage('build') {
+            steps {
+                script{
+                      sh 'mvn clean package'
+                   }
+            }
+        }
+          stage('sonarqube') {
+            steps {
+                script{
+                      withSonarQubeEnv(credentialsId: '7a0ce3c4-4aa0-434b-8beb-f260c3d93559') {
+    // some block
+                        
+                      sh 'mvn sonar:sonar'
+                    }
+                   }
+            }
+        }
+
+    }
+}
