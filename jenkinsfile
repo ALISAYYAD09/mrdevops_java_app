@@ -7,7 +7,7 @@ maven "Maven"
         stage('gitcheckout') {
             steps {
                  
-                    git 'https://github.com/ALISAYYAD09/maven-web-application.git'
+                    git branch: 'main', url: 'https://github.com/ALISAYYAD09/mrdevops_java_app.git'
 
       }
         }
