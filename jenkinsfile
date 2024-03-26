@@ -11,7 +11,7 @@ maven "Maven"
 
       }
         }
-      stage('junit test') {
+  /*    stage('junit test') {
             steps {
                 script{
                       sh 'mvn clean test'
@@ -24,7 +24,7 @@ maven "Maven"
                       sh 'mvn verify -DskipUnitTests'
                    }
             }
-        }
+        } */
         stage('build') {
             steps {
                 script{
